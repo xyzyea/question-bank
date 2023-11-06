@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>學術倫理測驗題庫</title>
+    <script>var questions = '';</script>
+    <script src="./題庫/110-111學年度研究生模擬試題（一）.js"></script>
+    <script src="./題庫/110-111學年度研究生模擬試題（二）.js"></script>
+    <script src="./題庫/110-111學年度研究生模擬試題（三）.js"></script>
+    <script src="./題庫/110-111學年度大學生及專科生模擬試題（一）.js"></script>
+    <script src="./題庫/110-111學年度大學生及專科生模擬試題（二）.js"></script>
+    <script src="./題庫/110-111學年度大學生及專科生模擬試題（三）.js"></script>
+    <script src="./題庫/106-109學年度研究生模擬試題（一）.js"></script>
+    <script src="./題庫/106-109學年度研究生模擬試題（二）.js"></script>
+    <script src="./題庫/106-109學年度研究生模擬試題（三）.js"></script>
+    <script src="./題庫/104-105學年度研究生模擬試題.js"></script>
+    <script src="./題庫/104-109學年度大學生及專科生模擬試題（一）.js"></script>
+    <script src="./題庫/104-109學年度大學生及專科生模擬試題（二）.js"></script>
+    <script src="./題庫/104-109學年度大學生及專科生模擬試題（三）.js"></script>
+    <script src="./題庫/104-108學年度大學生及專科生模擬試題.js"></script>
+</head>
+<body>
+    <h1>學術倫理測驗題庫</h1>
+
+    <div>
+        <input type="text" id="search-box" placeholder="輸入關鍵字">
+        <button onclick="clearSearch()">清除</button>
+    </div>
+
+    <div id="results">
+        <!-- 搜索結果將顯示在這里 -->
+    </div>
+
+    <script>
+        // 初始化題庫數據
+        let questionBank = [];
+    
+        // 將題庫數據解析為數組
+        function parseQuestionInput() {
+            questionBank = questions.trim().split('\n\n');
+        }
+
+        // 搜索題庫
+        function searchQuestions() {
+            parseQuestionInput();
+
+            const searchInput = document.getElementById("search-box").value;
+            const resultsContainer = document.getElementById("results");
+            resultsContainer.innerHTML = "";
+
+            for (const questionBlock of questionBank) {
+                if (questionBlock.includes(searchInput)) {
+                    const resultElement = document.createElement("pre");
+                    resultElement.innerHTML = questionBlock;
+                    resultsContainer.appendChild(resultElement);
+                }
+            }
+        }
+
+        // 監聽文本框的輸入完成事件
+        const searchBox = document.getElementById("search-box");
+        searchBox.addEventListener("input", searchQuestions);
+
+        // 清除搜索結果
+        function clearSearch() {
+            document.getElementById("search-box").value = "";
+            document.getElementById("results").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
